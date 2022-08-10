@@ -57,6 +57,7 @@ const Viewvehicles = () => {
                 <th>Fuel Type</th>
                 <th>Owner Name</th>
                 <th>Registered Year</th>
+                <th>Type</th>
                 <th>Update</th>
                 <th>Delete</th>
               </tr>
@@ -69,6 +70,7 @@ const Viewvehicles = () => {
                   <td>{vehicle.fuelType}</td>
                   <td>{vehicle.ownerName}</td>
                   <td>{vehicle.registeredYear}</td>
+                  <td>{vehicle.vehitype}</td>
                   <td>
                     <Button onClick = {() => {setModalShow(true);setVehicledet(vehicle)}}>Update</Button>
                   </td>

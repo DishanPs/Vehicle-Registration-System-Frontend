@@ -46,7 +46,7 @@ const Updateform = ({vehicle}) => {
             <center>
             <h3>Update Your Vehicle</h3>
                 <fieldset>
-                <form noValidate validated={validated}>
+                <form noValidate validated={validated} onSubmit={handleSubmit}>
 
                     <br /><br />
                     <input 
@@ -123,7 +123,7 @@ const Updateform = ({vehicle}) => {
 
                     <br /><br />
 
-                    <Button variant = "success" type ="submit" onClick={handleSubmit}>Save Changes</Button>
+                    <Button variant = "success" type ="submit">Save Changes</Button>
 
 
                 </form>

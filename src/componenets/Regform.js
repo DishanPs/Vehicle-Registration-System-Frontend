@@ -15,6 +15,8 @@ const Regform = () => {
     const [oname, setOwnerName] = useState();
     const [year, setYear] = useState();
 
+    const[type,setVtype] = useState();
+
     const navigate = useNavigate();
 
 
@@ -25,6 +27,7 @@ const Regform = () => {
             "fuelType" : ftype,
             "ownerName" : oname,
             "registeredYear" : year,
+            "vehitype" : type,
         };
 
         const form = event.currentTarget;
@@ -38,10 +41,34 @@ const Regform = () => {
                 .then(() => alert("Success"),
                             navigate("/viewvehicles"))
                 .catch((err) => alert(err));
-                console.log(newVehicle);
         }
         setvalidated(true);
       };
+
+
+      const checkValidity = () =>{
+        if(vno.match("^([a-zA-Z]{2,3}|((?!0*-)[0-9]{2,3}))-[0-9]{4}(?<!0{4})$")) {
+            alert("True");
+            console.log(true);
+        }
+        else {
+            alert("False");
+            console.log(false);
+        }
+      }
+
+      const checkType = () =>{
+        if(vno.match("^([0-9]{2,3})-[0-9]{4}(?<!0{4})$")){
+            setVtype("Old");
+        }
+        else if(vno.match("^([a-zA-Z]{2,3})-[0-9]{4}(?<!0{4})$")){
+            setVtype("Modern");
+        }
+        else if(vno.match("^([0-9]{1,2})ශ්‍රී[0-9]{4}(?<!0{4})$")) {
+            setVtype("Vintage");
+        }
+
+      }
 
 
 
@@ -51,7 +78,7 @@ const Regform = () => {
             <center>
             <h3>Register Your Vehicle</h3>
                 <fieldset>
-                <form noValidate validated={validated}>
+                <form noValidate validated={validated} onSubmit={handleSubmit}>
 
                     <br /><br />
                     <input 
@@ -61,6 +88,8 @@ const Regform = () => {
                         onChange={(e) => setVehicleNo(e.target.value)}
                         required
                     />
+                    &nbsp;&nbsp;
+                    <Button variant ="outline-success" onClick={checkValidity}>Verify</Button>
 
                     <br /><br />
 
@@ -128,7 +157,7 @@ const Regform = () => {
 
                     <br /><br />
 
-                    <Button variant="success" type ="submit" onClick={handleSubmit}>Submit</Button>
+                    <Button variant="success" type ="submit" onClick={checkType}>Submit</Button>
 
 
                 </form>
